@@ -16,35 +16,36 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProductsEvent {
+  String get shopId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String shopId) create,
-    required TResult Function() read,
-    required TResult Function() update,
-    required TResult Function() delete,
+    required TResult Function(String productName, String shopId) add,
+    required TResult Function(String shopId) update,
+    required TResult Function(String productId, String shopId) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String shopId)? create,
-    TResult? Function()? read,
-    TResult? Function()? update,
-    TResult? Function()? delete,
+    TResult? Function(String productName, String shopId)? add,
+    TResult? Function(String shopId)? update,
+    TResult? Function(String productId, String shopId)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String shopId)? create,
-    TResult Function()? read,
-    TResult Function()? update,
-    TResult Function()? delete,
+    TResult Function(String productName, String shopId)? add,
+    TResult Function(String shopId)? update,
+    TResult Function(String productId, String shopId)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateProductsEvent value) create,
-    required TResult Function(_ReadProductsEvent value) read,
+    required TResult Function(_AddProductsEvent value) add,
     required TResult Function(_UpdateProductsEvent value) update,
     required TResult Function(_DeleteProductsEvent value) delete,
   }) =>
@@ -52,7 +53,7 @@ mixin _$ProductsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateProductsEvent value)? create,
-    TResult? Function(_ReadProductsEvent value)? read,
+    TResult? Function(_AddProductsEvent value)? add,
     TResult? Function(_UpdateProductsEvent value)? update,
     TResult? Function(_DeleteProductsEvent value)? delete,
   }) =>
@@ -60,11 +61,15 @@ mixin _$ProductsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateProductsEvent value)? create,
-    TResult Function(_ReadProductsEvent value)? read,
+    TResult Function(_AddProductsEvent value)? add,
     TResult Function(_UpdateProductsEvent value)? update,
     TResult Function(_DeleteProductsEvent value)? delete,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProductsEventCopyWith<ProductsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +78,8 @@ abstract class $ProductsEventCopyWith<$Res> {
   factory $ProductsEventCopyWith(
           ProductsEvent value, $Res Function(ProductsEvent) then) =
       _$ProductsEventCopyWithImpl<$Res, ProductsEvent>;
+  @useResult
+  $Res call({String shopId});
 }
 
 /// @nodoc
@@ -84,13 +91,28 @@ class _$ProductsEventCopyWithImpl<$Res, $Val extends ProductsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? shopId = null,
+  }) {
+    return _then(_value.copyWith(
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_CreateProductsEventCopyWith<$Res> {
+abstract class _$$_CreateProductsEventCopyWith<$Res>
+    implements $ProductsEventCopyWith<$Res> {
   factory _$$_CreateProductsEventCopyWith(_$_CreateProductsEvent value,
           $Res Function(_$_CreateProductsEvent) then) =
       __$$_CreateProductsEventCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({String shopId});
 }
@@ -152,9 +174,9 @@ class _$_CreateProductsEvent extends _CreateProductsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String shopId) create,
-    required TResult Function() read,
-    required TResult Function() update,
-    required TResult Function() delete,
+    required TResult Function(String productName, String shopId) add,
+    required TResult Function(String shopId) update,
+    required TResult Function(String productId, String shopId) delete,
   }) {
     return create(shopId);
   }
@@ -163,9 +185,9 @@ class _$_CreateProductsEvent extends _CreateProductsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String shopId)? create,
-    TResult? Function()? read,
-    TResult? Function()? update,
-    TResult? Function()? delete,
+    TResult? Function(String productName, String shopId)? add,
+    TResult? Function(String shopId)? update,
+    TResult? Function(String productId, String shopId)? delete,
   }) {
     return create?.call(shopId);
   }
@@ -174,9 +196,9 @@ class _$_CreateProductsEvent extends _CreateProductsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String shopId)? create,
-    TResult Function()? read,
-    TResult Function()? update,
-    TResult Function()? delete,
+    TResult Function(String productName, String shopId)? add,
+    TResult Function(String shopId)? update,
+    TResult Function(String productId, String shopId)? delete,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -189,7 +211,7 @@ class _$_CreateProductsEvent extends _CreateProductsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateProductsEvent value) create,
-    required TResult Function(_ReadProductsEvent value) read,
+    required TResult Function(_AddProductsEvent value) add,
     required TResult Function(_UpdateProductsEvent value) update,
     required TResult Function(_DeleteProductsEvent value) delete,
   }) {
@@ -200,7 +222,7 @@ class _$_CreateProductsEvent extends _CreateProductsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateProductsEvent value)? create,
-    TResult? Function(_ReadProductsEvent value)? read,
+    TResult? Function(_AddProductsEvent value)? add,
     TResult? Function(_UpdateProductsEvent value)? update,
     TResult? Function(_DeleteProductsEvent value)? delete,
   }) {
@@ -211,7 +233,7 @@ class _$_CreateProductsEvent extends _CreateProductsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateProductsEvent value)? create,
-    TResult Function(_ReadProductsEvent value)? read,
+    TResult Function(_AddProductsEvent value)? add,
     TResult Function(_UpdateProductsEvent value)? update,
     TResult Function(_DeleteProductsEvent value)? delete,
     required TResult orElse(),
@@ -228,80 +250,120 @@ abstract class _CreateProductsEvent extends ProductsEvent {
       _$_CreateProductsEvent;
   const _CreateProductsEvent._() : super._();
 
+  @override
   String get shopId;
+  @override
   @JsonKey(ignore: true)
   _$$_CreateProductsEventCopyWith<_$_CreateProductsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ReadProductsEventCopyWith<$Res> {
-  factory _$$_ReadProductsEventCopyWith(_$_ReadProductsEvent value,
-          $Res Function(_$_ReadProductsEvent) then) =
-      __$$_ReadProductsEventCopyWithImpl<$Res>;
+abstract class _$$_AddProductsEventCopyWith<$Res>
+    implements $ProductsEventCopyWith<$Res> {
+  factory _$$_AddProductsEventCopyWith(
+          _$_AddProductsEvent value, $Res Function(_$_AddProductsEvent) then) =
+      __$$_AddProductsEventCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String productName, String shopId});
 }
 
 /// @nodoc
-class __$$_ReadProductsEventCopyWithImpl<$Res>
-    extends _$ProductsEventCopyWithImpl<$Res, _$_ReadProductsEvent>
-    implements _$$_ReadProductsEventCopyWith<$Res> {
-  __$$_ReadProductsEventCopyWithImpl(
-      _$_ReadProductsEvent _value, $Res Function(_$_ReadProductsEvent) _then)
+class __$$_AddProductsEventCopyWithImpl<$Res>
+    extends _$ProductsEventCopyWithImpl<$Res, _$_AddProductsEvent>
+    implements _$$_AddProductsEventCopyWith<$Res> {
+  __$$_AddProductsEventCopyWithImpl(
+      _$_AddProductsEvent _value, $Res Function(_$_AddProductsEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productName = null,
+    Object? shopId = null,
+  }) {
+    return _then(_$_AddProductsEvent(
+      productName: null == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_ReadProductsEvent extends _ReadProductsEvent {
-  const _$_ReadProductsEvent() : super._();
+class _$_AddProductsEvent extends _AddProductsEvent {
+  const _$_AddProductsEvent({required this.productName, required this.shopId})
+      : super._();
+
+  @override
+  final String productName;
+  @override
+  final String shopId;
 
   @override
   String toString() {
-    return 'ProductsEvent.read()';
+    return 'ProductsEvent.add(productName: $productName, shopId: $shopId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ReadProductsEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$_AddProductsEvent &&
+            (identical(other.productName, productName) ||
+                other.productName == productName) &&
+            (identical(other.shopId, shopId) || other.shopId == shopId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, productName, shopId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddProductsEventCopyWith<_$_AddProductsEvent> get copyWith =>
+      __$$_AddProductsEventCopyWithImpl<_$_AddProductsEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String shopId) create,
-    required TResult Function() read,
-    required TResult Function() update,
-    required TResult Function() delete,
+    required TResult Function(String productName, String shopId) add,
+    required TResult Function(String shopId) update,
+    required TResult Function(String productId, String shopId) delete,
   }) {
-    return read();
+    return add(productName, shopId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String shopId)? create,
-    TResult? Function()? read,
-    TResult? Function()? update,
-    TResult? Function()? delete,
+    TResult? Function(String productName, String shopId)? add,
+    TResult? Function(String shopId)? update,
+    TResult? Function(String productId, String shopId)? delete,
   }) {
-    return read?.call();
+    return add?.call(productName, shopId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String shopId)? create,
-    TResult Function()? read,
-    TResult Function()? update,
-    TResult Function()? delete,
+    TResult Function(String productName, String shopId)? add,
+    TResult Function(String shopId)? update,
+    TResult Function(String productId, String shopId)? delete,
     required TResult orElse(),
   }) {
-    if (read != null) {
-      return read();
+    if (add != null) {
+      return add(productName, shopId);
     }
     return orElse();
   }
@@ -310,50 +372,64 @@ class _$_ReadProductsEvent extends _ReadProductsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateProductsEvent value) create,
-    required TResult Function(_ReadProductsEvent value) read,
+    required TResult Function(_AddProductsEvent value) add,
     required TResult Function(_UpdateProductsEvent value) update,
     required TResult Function(_DeleteProductsEvent value) delete,
   }) {
-    return read(this);
+    return add(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateProductsEvent value)? create,
-    TResult? Function(_ReadProductsEvent value)? read,
+    TResult? Function(_AddProductsEvent value)? add,
     TResult? Function(_UpdateProductsEvent value)? update,
     TResult? Function(_DeleteProductsEvent value)? delete,
   }) {
-    return read?.call(this);
+    return add?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateProductsEvent value)? create,
-    TResult Function(_ReadProductsEvent value)? read,
+    TResult Function(_AddProductsEvent value)? add,
     TResult Function(_UpdateProductsEvent value)? update,
     TResult Function(_DeleteProductsEvent value)? delete,
     required TResult orElse(),
   }) {
-    if (read != null) {
-      return read(this);
+    if (add != null) {
+      return add(this);
     }
     return orElse();
   }
 }
 
-abstract class _ReadProductsEvent extends ProductsEvent {
-  const factory _ReadProductsEvent() = _$_ReadProductsEvent;
-  const _ReadProductsEvent._() : super._();
+abstract class _AddProductsEvent extends ProductsEvent {
+  const factory _AddProductsEvent(
+      {required final String productName,
+      required final String shopId}) = _$_AddProductsEvent;
+  const _AddProductsEvent._() : super._();
+
+  String get productName;
+  @override
+  String get shopId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AddProductsEventCopyWith<_$_AddProductsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UpdateProductsEventCopyWith<$Res> {
+abstract class _$$_UpdateProductsEventCopyWith<$Res>
+    implements $ProductsEventCopyWith<$Res> {
   factory _$$_UpdateProductsEventCopyWith(_$_UpdateProductsEvent value,
           $Res Function(_$_UpdateProductsEvent) then) =
       __$$_UpdateProductsEventCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String shopId});
 }
 
 /// @nodoc
@@ -363,60 +439,85 @@ class __$$_UpdateProductsEventCopyWithImpl<$Res>
   __$$_UpdateProductsEventCopyWithImpl(_$_UpdateProductsEvent _value,
       $Res Function(_$_UpdateProductsEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? shopId = null,
+  }) {
+    return _then(_$_UpdateProductsEvent(
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_UpdateProductsEvent extends _UpdateProductsEvent {
-  const _$_UpdateProductsEvent() : super._();
+  const _$_UpdateProductsEvent({required this.shopId}) : super._();
+
+  @override
+  final String shopId;
 
   @override
   String toString() {
-    return 'ProductsEvent.update()';
+    return 'ProductsEvent.update(shopId: $shopId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UpdateProductsEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateProductsEvent &&
+            (identical(other.shopId, shopId) || other.shopId == shopId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, shopId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateProductsEventCopyWith<_$_UpdateProductsEvent> get copyWith =>
+      __$$_UpdateProductsEventCopyWithImpl<_$_UpdateProductsEvent>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String shopId) create,
-    required TResult Function() read,
-    required TResult Function() update,
-    required TResult Function() delete,
+    required TResult Function(String productName, String shopId) add,
+    required TResult Function(String shopId) update,
+    required TResult Function(String productId, String shopId) delete,
   }) {
-    return update();
+    return update(shopId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String shopId)? create,
-    TResult? Function()? read,
-    TResult? Function()? update,
-    TResult? Function()? delete,
+    TResult? Function(String productName, String shopId)? add,
+    TResult? Function(String shopId)? update,
+    TResult? Function(String productId, String shopId)? delete,
   }) {
-    return update?.call();
+    return update?.call(shopId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String shopId)? create,
-    TResult Function()? read,
-    TResult Function()? update,
-    TResult Function()? delete,
+    TResult Function(String productName, String shopId)? add,
+    TResult Function(String shopId)? update,
+    TResult Function(String productId, String shopId)? delete,
     required TResult orElse(),
   }) {
     if (update != null) {
-      return update();
+      return update(shopId);
     }
     return orElse();
   }
@@ -425,7 +526,7 @@ class _$_UpdateProductsEvent extends _UpdateProductsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateProductsEvent value) create,
-    required TResult Function(_ReadProductsEvent value) read,
+    required TResult Function(_AddProductsEvent value) add,
     required TResult Function(_UpdateProductsEvent value) update,
     required TResult Function(_DeleteProductsEvent value) delete,
   }) {
@@ -436,7 +537,7 @@ class _$_UpdateProductsEvent extends _UpdateProductsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateProductsEvent value)? create,
-    TResult? Function(_ReadProductsEvent value)? read,
+    TResult? Function(_AddProductsEvent value)? add,
     TResult? Function(_UpdateProductsEvent value)? update,
     TResult? Function(_DeleteProductsEvent value)? delete,
   }) {
@@ -447,7 +548,7 @@ class _$_UpdateProductsEvent extends _UpdateProductsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateProductsEvent value)? create,
-    TResult Function(_ReadProductsEvent value)? read,
+    TResult Function(_AddProductsEvent value)? add,
     TResult Function(_UpdateProductsEvent value)? update,
     TResult Function(_DeleteProductsEvent value)? delete,
     required TResult orElse(),
@@ -460,15 +561,27 @@ class _$_UpdateProductsEvent extends _UpdateProductsEvent {
 }
 
 abstract class _UpdateProductsEvent extends ProductsEvent {
-  const factory _UpdateProductsEvent() = _$_UpdateProductsEvent;
+  const factory _UpdateProductsEvent({required final String shopId}) =
+      _$_UpdateProductsEvent;
   const _UpdateProductsEvent._() : super._();
+
+  @override
+  String get shopId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UpdateProductsEventCopyWith<_$_UpdateProductsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeleteProductsEventCopyWith<$Res> {
+abstract class _$$_DeleteProductsEventCopyWith<$Res>
+    implements $ProductsEventCopyWith<$Res> {
   factory _$$_DeleteProductsEventCopyWith(_$_DeleteProductsEvent value,
           $Res Function(_$_DeleteProductsEvent) then) =
       __$$_DeleteProductsEventCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String productId, String shopId});
 }
 
 /// @nodoc
@@ -478,60 +591,95 @@ class __$$_DeleteProductsEventCopyWithImpl<$Res>
   __$$_DeleteProductsEventCopyWithImpl(_$_DeleteProductsEvent _value,
       $Res Function(_$_DeleteProductsEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productId = null,
+    Object? shopId = null,
+  }) {
+    return _then(_$_DeleteProductsEvent(
+      productId: null == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_DeleteProductsEvent extends _DeleteProductsEvent {
-  const _$_DeleteProductsEvent() : super._();
+  const _$_DeleteProductsEvent({required this.productId, required this.shopId})
+      : super._();
+
+  @override
+  final String productId;
+  @override
+  final String shopId;
 
   @override
   String toString() {
-    return 'ProductsEvent.delete()';
+    return 'ProductsEvent.delete(productId: $productId, shopId: $shopId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DeleteProductsEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$_DeleteProductsEvent &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
+            (identical(other.shopId, shopId) || other.shopId == shopId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, productId, shopId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DeleteProductsEventCopyWith<_$_DeleteProductsEvent> get copyWith =>
+      __$$_DeleteProductsEventCopyWithImpl<_$_DeleteProductsEvent>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String shopId) create,
-    required TResult Function() read,
-    required TResult Function() update,
-    required TResult Function() delete,
+    required TResult Function(String productName, String shopId) add,
+    required TResult Function(String shopId) update,
+    required TResult Function(String productId, String shopId) delete,
   }) {
-    return delete();
+    return delete(productId, shopId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String shopId)? create,
-    TResult? Function()? read,
-    TResult? Function()? update,
-    TResult? Function()? delete,
+    TResult? Function(String productName, String shopId)? add,
+    TResult? Function(String shopId)? update,
+    TResult? Function(String productId, String shopId)? delete,
   }) {
-    return delete?.call();
+    return delete?.call(productId, shopId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String shopId)? create,
-    TResult Function()? read,
-    TResult Function()? update,
-    TResult Function()? delete,
+    TResult Function(String productName, String shopId)? add,
+    TResult Function(String shopId)? update,
+    TResult Function(String productId, String shopId)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
-      return delete();
+      return delete(productId, shopId);
     }
     return orElse();
   }
@@ -540,7 +688,7 @@ class _$_DeleteProductsEvent extends _DeleteProductsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CreateProductsEvent value) create,
-    required TResult Function(_ReadProductsEvent value) read,
+    required TResult Function(_AddProductsEvent value) add,
     required TResult Function(_UpdateProductsEvent value) update,
     required TResult Function(_DeleteProductsEvent value) delete,
   }) {
@@ -551,7 +699,7 @@ class _$_DeleteProductsEvent extends _DeleteProductsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CreateProductsEvent value)? create,
-    TResult? Function(_ReadProductsEvent value)? read,
+    TResult? Function(_AddProductsEvent value)? add,
     TResult? Function(_UpdateProductsEvent value)? update,
     TResult? Function(_DeleteProductsEvent value)? delete,
   }) {
@@ -562,7 +710,7 @@ class _$_DeleteProductsEvent extends _DeleteProductsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CreateProductsEvent value)? create,
-    TResult Function(_ReadProductsEvent value)? read,
+    TResult Function(_AddProductsEvent value)? add,
     TResult Function(_UpdateProductsEvent value)? update,
     TResult Function(_DeleteProductsEvent value)? delete,
     required TResult orElse(),
@@ -575,8 +723,18 @@ class _$_DeleteProductsEvent extends _DeleteProductsEvent {
 }
 
 abstract class _DeleteProductsEvent extends ProductsEvent {
-  const factory _DeleteProductsEvent() = _$_DeleteProductsEvent;
+  const factory _DeleteProductsEvent(
+      {required final String productId,
+      required final String shopId}) = _$_DeleteProductsEvent;
   const _DeleteProductsEvent._() : super._();
+
+  String get productId;
+  @override
+  String get shopId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DeleteProductsEventCopyWith<_$_DeleteProductsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

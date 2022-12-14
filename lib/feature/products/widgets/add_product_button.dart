@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/feature/shops/bloc/shops_bloc.dart';
+import 'package:shop_app/feature/products/bloc/products_bloc.dart';
 
-class AddShopButton extends StatelessWidget {
-  const AddShopButton({
+class AddProductButton extends StatelessWidget {
+  const AddProductButton({
     Key? key,
+    required this.shopId,
   }) : super(key: key);
+
+  final String shopId;
 
   @override
   Widget build(BuildContext context) {
-    final shopsBloc = context.read<ShopsBloc>();
+    final productsBloc = context.read<ProductsBloc>();
 
     return FloatingActionButton(
       onPressed: () {
         showDialog(
             context: context,
             builder: (context) {
-              return CreateShopDialog(
-                shopsBloc: shopsBloc,
+              return CreateProductDialog(
+                productsBloc: productsBloc,
+                shopId: shopId,
               );
             });
       },
@@ -26,25 +30,27 @@ class AddShopButton extends StatelessWidget {
   }
 }
 
-class CreateShopDialog extends StatefulWidget {
-  const CreateShopDialog({
+class CreateProductDialog extends StatefulWidget {
+  const CreateProductDialog({
     Key? key,
-    required this.shopsBloc,
+    required this.productsBloc,
+    required this.shopId,
   }) : super(key: key);
 
-  final ShopsBloc shopsBloc;
+  final ProductsBloc productsBloc;
+  final String shopId;
 
   @override
-  State<CreateShopDialog> createState() => _CreateShopDialogState();
+  State<CreateProductDialog> createState() => _CreateProductDialogState();
 }
 
-class _CreateShopDialogState extends State<CreateShopDialog> {
+class _CreateProductDialogState extends State<CreateProductDialog> {
   final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Введите название магазина'),
+      title: const Text('Введите название продукта'),
       content: TextField(
         controller: controller,
       ),
@@ -59,9 +65,13 @@ class _CreateShopDialogState extends State<CreateShopDialog> {
             child: const Text('Закрыть')),
         ElevatedButton(
             onPressed: () {
-              final shopName = controller.text;
+              final productName = controller.text;
+              final productId = widget.shopId;
               if (controller.text != '') {
-              widget.shopsBloc.add(ShopsEvent.add(shopName: shopName));
+                widget.productsBloc.add(ProductsEvent.add(
+                  productName: productName,
+                  shopId: productId,
+                ));
               }
               Navigator.pop(context);
             },

@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:shop_app/feature/app/entities/product.dart';
 import 'package:shop_app/feature/app/entities/shop.dart';
 import 'package:shop_app/feature/products/bloc/products_bloc.dart';
+import 'package:shop_app/feature/products/widgets/add_product_button.dart';
 
 class ProductsList extends StatelessWidget {
   const ProductsList({
@@ -49,6 +50,7 @@ class ProductsList extends StatelessWidget {
                     return _ProductTile(
                       product: product,
                       number: number,
+                      shopId: shop.id,
                     );
                   },
                   itemCount: products.length,
@@ -62,9 +64,8 @@ class ProductsList extends StatelessWidget {
             );
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
+        floatingActionButton: AddProductButton(
+          shopId: shop.id,
         ),
       ),
     );
@@ -76,10 +77,12 @@ class _ProductTile extends StatelessWidget {
     Key? key,
     required this.product,
     required this.number,
+    required this.shopId,
   }) : super(key: key);
 
   final Product product;
   final String number;
+  final String shopId;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +95,14 @@ class _ProductTile extends StatelessWidget {
         children: [
           SlidableAction(
             borderRadius: BorderRadius.circular(12.0),
-            onPressed: (context) {},
+            onPressed: (context) {
+              context.read<ProductsBloc>().add(
+                    ProductsEvent.delete(
+                      productId: product.id,
+                      shopId: shopId,
+                    ),
+                  );
+            },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,

@@ -22,6 +22,7 @@ class ShopListPage extends StatelessWidget {
         ),
         body: BlocBuilder<ShopsBloc, ShopsState>(
           builder: (context, state) {
+
             return state.maybeMap(
                 loading: (state) => const Center(
                       child: CircularProgressIndicator(),

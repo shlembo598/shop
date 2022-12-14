@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:shop_app/feature/app/entities/shop.dart';
 import 'package:shop_app/feature/products/pages/products_list.dart';
-
+import 'package:shop_app/feature/shops/bloc/shops_bloc.dart';
 
 class ShopList extends StatelessWidget {
   const ShopList({
@@ -62,7 +63,11 @@ class _ShopTile extends StatelessWidget {
         children: [
           SlidableAction(
             borderRadius: BorderRadius.circular(12.0),
-            onPressed: (context) {},
+            onPressed: (context) {
+              context.read<ShopsBloc>().add(
+                    ShopsEvent.delete(shopId: shop.id),
+                  );
+            },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,

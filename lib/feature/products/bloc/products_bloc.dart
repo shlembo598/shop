@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shop_app/feature/app/entities/product.dart';
 
 part 'products_bloc.freezed.dart';
@@ -14,11 +15,19 @@ class ProductsEvent with _$ProductsEvent {
     required String shopId,
   }) = _CreateProductsEvent;
 
-  const factory ProductsEvent.read() = _ReadProductsEvent;
+  const factory ProductsEvent.add({
+    required String productName,
+    required String shopId,
+  }) = _AddProductsEvent;
 
-  const factory ProductsEvent.update() = _UpdateProductsEvent;
+  const factory ProductsEvent.update({
+    required String shopId,
+  }) = _UpdateProductsEvent;
 
-  const factory ProductsEvent.delete() = _DeleteProductsEvent;
+  const factory ProductsEvent.delete({
+    required String productId,
+    required String shopId,
+  }) = _DeleteProductsEvent;
 }
 
 @freezed
@@ -41,7 +50,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<ProductsEvent>(
       (event, emitter) => event.map<Future<void>>(
         create: (event) => _create(event, emitter),
-        read: (event) => _read(event, emitter),
+        add: (event) => _add(event, emitter),
         update: (event) => _update(event, emitter),
         delete: (event) => _delete(event, emitter),
       ),
@@ -49,38 +58,77 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     );
   }
 
+  late Box<Product> box;
+
   Future<void> _create(
     _CreateProductsEvent event,
     Emitter<ProductsState> emit,
   ) async {
+    box = await Hive.openBox<Product>('products');
     final shopId = event.shopId;
-    final List<Product> products = [
-      Product('id', 'Продукт 1', shopId),
-      Product('id', 'Продукт 2', shopId),
-      Product('id', 'Продукт 3', shopId),
-      Product('id', 'Продукт 4', shopId)
-    ];
+
     emit(const _LoadinfProductsState());
 
-    await Future.delayed(const Duration(seconds: 1));
-
-    emit(_LoadedlProductsState(
-      products: products,
-    ));
+    _addProducts(emit, shopId);
   }
 
-  Future<void> _read(
-    _ReadProductsEvent event,
+  Future<void> _add(
+    _AddProductsEvent event,
     Emitter<ProductsState> emit,
-  ) async {}
+  ) async {
+    final productName = event.productName;
+    final shopId = event.shopId;
+    final newProduct = Product(
+      id: _idGenerator(),
+      name: productName,
+      shopId: shopId,
+    );
+    box.add(newProduct);
+
+    add(_UpdateProductsEvent(shopId: shopId));
+  }
 
   Future<void> _update(
     _UpdateProductsEvent event,
     Emitter<ProductsState> emit,
-  ) async {}
+  ) async {
+    _addProducts(emit, event.shopId);
+  }
 
   Future<void> _delete(
     _DeleteProductsEvent event,
     Emitter<ProductsState> emit,
-  ) async {}
+  ) async {
+    final Map<dynamic, Product> productsMap = box.toMap();
+    dynamic desiredKey;
+    productsMap.forEach((key, value) {
+      if (value.id == event.productId) {
+        desiredKey = key;
+      }
+    });
+    box.delete(desiredKey);
+
+    add(_UpdateProductsEvent(shopId: event.shopId));
+  }
+
+  void _addProducts(Emitter<ProductsState> emit, String shopId) {
+    List<Product> allProducts = [];
+    if (box.isNotEmpty) {
+      allProducts = box.values.toList();
+      final List<Product> selectedProducts = allProducts.where((e) => e.shopId.contains(shopId)).toList();
+
+      emit(_LoadedlProductsState(
+        products: selectedProducts,
+      ));
+    } else {
+      emit(_LoadedlProductsState(
+        products: allProducts,
+      ));
+    }
+  }
+
+  String _idGenerator() {
+    final now = DateTime.now();
+    return now.microsecondsSinceEpoch.toString();
+  }
 }

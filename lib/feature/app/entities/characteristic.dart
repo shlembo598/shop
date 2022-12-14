@@ -1,7 +1,15 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
+part 'characteristic.g.dart';
+
 @HiveType(typeId: 2)
-class Characteristic{
+class Characteristic extends HiveObject {
+  Characteristic({
+    required this.id,
+    required this.name,
+    required this.productId,
+  });
+
   @HiveField(0)
   final String id;
 
@@ -9,7 +17,5 @@ class Characteristic{
   final String name;
 
   @HiveField(2)
-  final String productId;
-
-  Characteristic(this.id, this.name, this.productId);
+  final List<String> productId;
 }
