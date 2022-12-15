@@ -767,7 +767,7 @@ mixin _$ProductsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialProductsState value) initial,
-    required TResult Function(_LoadinfProductsState value) loading,
+    required TResult Function(_LoadingProductsState value) loading,
     required TResult Function(_LoadedlProductsState value) loaded,
     required TResult Function(_FailedProductsState value) failed,
   }) =>
@@ -775,7 +775,7 @@ mixin _$ProductsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialProductsState value)? initial,
-    TResult? Function(_LoadinfProductsState value)? loading,
+    TResult? Function(_LoadingProductsState value)? loading,
     TResult? Function(_LoadedlProductsState value)? loaded,
     TResult? Function(_FailedProductsState value)? failed,
   }) =>
@@ -783,7 +783,7 @@ mixin _$ProductsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialProductsState value)? initial,
-    TResult Function(_LoadinfProductsState value)? loading,
+    TResult Function(_LoadingProductsState value)? loading,
     TResult Function(_LoadedlProductsState value)? loaded,
     TResult Function(_FailedProductsState value)? failed,
     required TResult orElse(),
@@ -885,7 +885,7 @@ class _$_InitialProductsState extends _InitialProductsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialProductsState value) initial,
-    required TResult Function(_LoadinfProductsState value) loading,
+    required TResult Function(_LoadingProductsState value) loading,
     required TResult Function(_LoadedlProductsState value) loaded,
     required TResult Function(_FailedProductsState value) failed,
   }) {
@@ -896,7 +896,7 @@ class _$_InitialProductsState extends _InitialProductsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialProductsState value)? initial,
-    TResult? Function(_LoadinfProductsState value)? loading,
+    TResult? Function(_LoadingProductsState value)? loading,
     TResult? Function(_LoadedlProductsState value)? loaded,
     TResult? Function(_FailedProductsState value)? failed,
   }) {
@@ -907,7 +907,7 @@ class _$_InitialProductsState extends _InitialProductsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialProductsState value)? initial,
-    TResult Function(_LoadinfProductsState value)? loading,
+    TResult Function(_LoadingProductsState value)? loading,
     TResult Function(_LoadedlProductsState value)? loaded,
     TResult Function(_FailedProductsState value)? failed,
     required TResult orElse(),
@@ -925,25 +925,25 @@ abstract class _InitialProductsState extends ProductsState {
 }
 
 /// @nodoc
-abstract class _$$_LoadinfProductsStateCopyWith<$Res> {
-  factory _$$_LoadinfProductsStateCopyWith(_$_LoadinfProductsState value,
-          $Res Function(_$_LoadinfProductsState) then) =
-      __$$_LoadinfProductsStateCopyWithImpl<$Res>;
+abstract class _$$_LoadingProductsStateCopyWith<$Res> {
+  factory _$$_LoadingProductsStateCopyWith(_$_LoadingProductsState value,
+          $Res Function(_$_LoadingProductsState) then) =
+      __$$_LoadingProductsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadinfProductsStateCopyWithImpl<$Res>
-    extends _$ProductsStateCopyWithImpl<$Res, _$_LoadinfProductsState>
-    implements _$$_LoadinfProductsStateCopyWith<$Res> {
-  __$$_LoadinfProductsStateCopyWithImpl(_$_LoadinfProductsState _value,
-      $Res Function(_$_LoadinfProductsState) _then)
+class __$$_LoadingProductsStateCopyWithImpl<$Res>
+    extends _$ProductsStateCopyWithImpl<$Res, _$_LoadingProductsState>
+    implements _$$_LoadingProductsStateCopyWith<$Res> {
+  __$$_LoadingProductsStateCopyWithImpl(_$_LoadingProductsState _value,
+      $Res Function(_$_LoadingProductsState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadinfProductsState extends _LoadinfProductsState {
-  const _$_LoadinfProductsState() : super._();
+class _$_LoadingProductsState extends _LoadingProductsState {
+  const _$_LoadingProductsState() : super._();
 
   @override
   String toString() {
@@ -953,7 +953,7 @@ class _$_LoadinfProductsState extends _LoadinfProductsState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadinfProductsState);
+        (other.runtimeType == runtimeType && other is _$_LoadingProductsState);
   }
 
   @override
@@ -1000,7 +1000,7 @@ class _$_LoadinfProductsState extends _LoadinfProductsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialProductsState value) initial,
-    required TResult Function(_LoadinfProductsState value) loading,
+    required TResult Function(_LoadingProductsState value) loading,
     required TResult Function(_LoadedlProductsState value) loaded,
     required TResult Function(_FailedProductsState value) failed,
   }) {
@@ -1011,7 +1011,7 @@ class _$_LoadinfProductsState extends _LoadinfProductsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialProductsState value)? initial,
-    TResult? Function(_LoadinfProductsState value)? loading,
+    TResult? Function(_LoadingProductsState value)? loading,
     TResult? Function(_LoadedlProductsState value)? loaded,
     TResult? Function(_FailedProductsState value)? failed,
   }) {
@@ -1022,7 +1022,7 @@ class _$_LoadinfProductsState extends _LoadinfProductsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialProductsState value)? initial,
-    TResult Function(_LoadinfProductsState value)? loading,
+    TResult Function(_LoadingProductsState value)? loading,
     TResult Function(_LoadedlProductsState value)? loaded,
     TResult Function(_FailedProductsState value)? failed,
     required TResult orElse(),
@@ -1034,9 +1034,9 @@ class _$_LoadinfProductsState extends _LoadinfProductsState {
   }
 }
 
-abstract class _LoadinfProductsState extends ProductsState {
-  const factory _LoadinfProductsState() = _$_LoadinfProductsState;
-  const _LoadinfProductsState._() : super._();
+abstract class _LoadingProductsState extends ProductsState {
+  const factory _LoadingProductsState() = _$_LoadingProductsState;
+  const _LoadingProductsState._() : super._();
 }
 
 /// @nodoc
@@ -1151,7 +1151,7 @@ class _$_LoadedlProductsState extends _LoadedlProductsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialProductsState value) initial,
-    required TResult Function(_LoadinfProductsState value) loading,
+    required TResult Function(_LoadingProductsState value) loading,
     required TResult Function(_LoadedlProductsState value) loaded,
     required TResult Function(_FailedProductsState value) failed,
   }) {
@@ -1162,7 +1162,7 @@ class _$_LoadedlProductsState extends _LoadedlProductsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialProductsState value)? initial,
-    TResult? Function(_LoadinfProductsState value)? loading,
+    TResult? Function(_LoadingProductsState value)? loading,
     TResult? Function(_LoadedlProductsState value)? loaded,
     TResult? Function(_FailedProductsState value)? failed,
   }) {
@@ -1173,7 +1173,7 @@ class _$_LoadedlProductsState extends _LoadedlProductsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialProductsState value)? initial,
-    TResult Function(_LoadinfProductsState value)? loading,
+    TResult Function(_LoadingProductsState value)? loading,
     TResult Function(_LoadedlProductsState value)? loaded,
     TResult Function(_FailedProductsState value)? failed,
     required TResult orElse(),
@@ -1272,7 +1272,7 @@ class _$_FailedProductsState extends _FailedProductsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialProductsState value) initial,
-    required TResult Function(_LoadinfProductsState value) loading,
+    required TResult Function(_LoadingProductsState value) loading,
     required TResult Function(_LoadedlProductsState value) loaded,
     required TResult Function(_FailedProductsState value) failed,
   }) {
@@ -1283,7 +1283,7 @@ class _$_FailedProductsState extends _FailedProductsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialProductsState value)? initial,
-    TResult? Function(_LoadinfProductsState value)? loading,
+    TResult? Function(_LoadingProductsState value)? loading,
     TResult? Function(_LoadedlProductsState value)? loaded,
     TResult? Function(_FailedProductsState value)? failed,
   }) {
@@ -1294,7 +1294,7 @@ class _$_FailedProductsState extends _FailedProductsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialProductsState value)? initial,
-    TResult Function(_LoadinfProductsState value)? loading,
+    TResult Function(_LoadingProductsState value)? loading,
     TResult Function(_LoadedlProductsState value)? loaded,
     TResult Function(_FailedProductsState value)? failed,
     required TResult orElse(),

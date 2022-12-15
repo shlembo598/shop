@@ -15,29 +15,31 @@ class ShopList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 16.0,
-      ),
-      itemBuilder: (context, index) {
-        final Shop shop = shopList[index];
-        final String number = (index + 1).toString();
+    return Expanded(
+      child: ListView.separated(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+          vertical: 16.0,
+        ),
+        itemBuilder: (context, index) {
+          final Shop shop = shopList[index];
+          final String number = (index + 1).toString();
 
-        return _ShopTile(
-          shop: shop,
-          number: number,
-        );
-      },
-      itemCount: shopList.length,
-      separatorBuilder: (BuildContext context, int index) {
-        return const SizedBox(
-          height: 5.0,
-        );
-      },
+          return _ShopTile(
+            shop: shop,
+            number: number,
+          );
+        },
+        itemCount: shopList.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return const SizedBox(
+            height: 5.0,
+          );
+        },
+      ),
     );
   }
 }

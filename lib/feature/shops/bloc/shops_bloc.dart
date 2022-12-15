@@ -3,6 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shop_app/feature/app/entities/characteristic.dart';
+import 'package:shop_app/feature/app/entities/product.dart';
 import 'package:shop_app/feature/app/entities/shop.dart';
 
 part 'shops_bloc.freezed.dart';
@@ -34,6 +36,7 @@ class ShopsState with _$ShopsState {
 
   const factory ShopsState.loaded({
     @Default([]) List<Shop> shopList,
+    @Default([]) List<Product> productList,
   }) = _LoadedShopsState;
 
   const factory ShopsState.failed() = _FailedShopstState;
@@ -52,17 +55,19 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
     );
   }
 
-  late Box<Shop> box;
+  late Box<Shop> shopsBox;
+  late Box<Product> productsBox;
+  late Box<Characteristic> characteristicsBox;
 
   Future<void> _create(
     _CreateShopsEvent event,
     Emitter<ShopsState> emit,
   ) async {
-    box = await Hive.openBox<Shop>('shops');
+    shopsBox = await Hive.openBox<Shop>('shops');
+    productsBox = await Hive.openBox<Product>('products');
+    characteristicsBox = await Hive.openBox<Characteristic>('characteristics');
 
     emit(const _LoadingShopsState());
-
-    await Future.delayed(const Duration(seconds: 1));
 
     _addShops(emit);
   }
@@ -71,7 +76,7 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
     _AddShopsEvent event,
     Emitter<ShopsState> emit,
   ) async {
-    box.add(Shop(id: _idGenerator(), name: event.shopName));
+    shopsBox.add(Shop(id: _idGenerator(), name: event.shopName));
     add(const _UpdateShopsEvent());
   }
 
@@ -84,8 +89,8 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
 
   void _addShops(Emitter<ShopsState> emit) {
     List<Shop> shops = [];
-    if (box.isNotEmpty) {
-      shops = box.values.toList();
+    if (shopsBox.isNotEmpty) {
+      shops = shopsBox.values.toList();
       emit(_LoadedShopsState(
         shopList: shops,
       ));
@@ -96,14 +101,14 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
     _DeleteShopsEvent event,
     Emitter<ShopsState> emit,
   ) async {
-    final Map<dynamic, Shop> shopsMap = box.toMap();
+    final Map<dynamic, Shop> shopsMap = shopsBox.toMap();
     dynamic desiredKey;
     shopsMap.forEach((key, value) {
       if (value.id == event.shopId) {
         desiredKey = key;
       }
     });
-    box.delete(desiredKey);
+    shopsBox.delete(desiredKey);
 
     add(const _UpdateShopsEvent());
   }

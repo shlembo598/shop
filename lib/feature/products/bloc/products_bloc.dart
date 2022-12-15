@@ -36,7 +36,7 @@ class ProductsState with _$ProductsState {
 
   const factory ProductsState.initial() = _InitialProductsState;
 
-  const factory ProductsState.loading() = _LoadinfProductsState;
+  const factory ProductsState.loading() = _LoadingProductsState;
 
   const factory ProductsState.loaded({
     @Default([]) List<Product> products,
@@ -67,7 +67,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     box = await Hive.openBox<Product>('products');
     final shopId = event.shopId;
 
-    emit(const _LoadinfProductsState());
+    emit(const _LoadingProductsState());
 
     _addProducts(emit, shopId);
   }

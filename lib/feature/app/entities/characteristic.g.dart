@@ -19,7 +19,7 @@ class CharacteristicAdapter extends TypeAdapter<Characteristic> {
     return Characteristic(
       id: fields[0] as String,
       name: fields[1] as String,
-      productId: (fields[2] as List).cast<String>(),
+      productId: fields[2] as String,
     );
   }
 

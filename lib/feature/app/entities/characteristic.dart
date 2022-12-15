@@ -17,5 +17,5 @@ class Characteristic extends HiveObject {
   final String name;
 
   @HiveField(2)
-  final List<String> productId;
+  final String productId;
 }

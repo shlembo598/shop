@@ -617,7 +617,8 @@ mixin _$ShopsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Shop> shopList) loaded,
+    required TResult Function(List<Shop> shopList, List<Product> productList)
+        loaded,
     required TResult Function() failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -625,7 +626,7 @@ mixin _$ShopsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Shop> shopList)? loaded,
+    TResult? Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult? Function()? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -633,7 +634,7 @@ mixin _$ShopsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Shop> shopList)? loaded,
+    TResult Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) =>
@@ -723,7 +724,8 @@ class _$_InitialShopsState extends _InitialShopsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Shop> shopList) loaded,
+    required TResult Function(List<Shop> shopList, List<Product> productList)
+        loaded,
     required TResult Function() failed,
   }) {
     return initial();
@@ -734,7 +736,7 @@ class _$_InitialShopsState extends _InitialShopsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Shop> shopList)? loaded,
+    TResult? Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult? Function()? failed,
   }) {
     return initial?.call();
@@ -745,7 +747,7 @@ class _$_InitialShopsState extends _InitialShopsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Shop> shopList)? loaded,
+    TResult Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -838,7 +840,8 @@ class _$_LoadingShopsState extends _LoadingShopsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Shop> shopList) loaded,
+    required TResult Function(List<Shop> shopList, List<Product> productList)
+        loaded,
     required TResult Function() failed,
   }) {
     return loading();
@@ -849,7 +852,7 @@ class _$_LoadingShopsState extends _LoadingShopsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Shop> shopList)? loaded,
+    TResult? Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult? Function()? failed,
   }) {
     return loading?.call();
@@ -860,7 +863,7 @@ class _$_LoadingShopsState extends _LoadingShopsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Shop> shopList)? loaded,
+    TResult Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -919,7 +922,7 @@ abstract class _$$_LoadedShopsStateCopyWith<$Res> {
           _$_LoadedShopsState value, $Res Function(_$_LoadedShopsState) then) =
       __$$_LoadedShopsStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Shop> shopList});
+  $Res call({List<Shop> shopList, List<Product> productList});
 }
 
 /// @nodoc
@@ -934,12 +937,17 @@ class __$$_LoadedShopsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? shopList = null,
+    Object? productList = null,
   }) {
     return _then(_$_LoadedShopsState(
       shopList: null == shopList
           ? _value._shopList
           : shopList // ignore: cast_nullable_to_non_nullable
               as List<Shop>,
+      productList: null == productList
+          ? _value._productList
+          : productList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -947,8 +955,11 @@ class __$$_LoadedShopsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadedShopsState extends _LoadedShopsState {
-  const _$_LoadedShopsState({final List<Shop> shopList = const []})
+  const _$_LoadedShopsState(
+      {final List<Shop> shopList = const [],
+      final List<Product> productList = const []})
       : _shopList = shopList,
+        _productList = productList,
         super._();
 
   final List<Shop> _shopList;
@@ -960,9 +971,18 @@ class _$_LoadedShopsState extends _LoadedShopsState {
     return EqualUnmodifiableListView(_shopList);
   }
 
+  final List<Product> _productList;
+  @override
+  @JsonKey()
+  List<Product> get productList {
+    if (_productList is EqualUnmodifiableListView) return _productList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productList);
+  }
+
   @override
   String toString() {
-    return 'ShopsState.loaded(shopList: $shopList)';
+    return 'ShopsState.loaded(shopList: $shopList, productList: $productList)';
   }
 
   @override
@@ -970,12 +990,16 @@ class _$_LoadedShopsState extends _LoadedShopsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadedShopsState &&
-            const DeepCollectionEquality().equals(other._shopList, _shopList));
+            const DeepCollectionEquality().equals(other._shopList, _shopList) &&
+            const DeepCollectionEquality()
+                .equals(other._productList, _productList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_shopList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_shopList),
+      const DeepCollectionEquality().hash(_productList));
 
   @JsonKey(ignore: true)
   @override
@@ -988,10 +1012,11 @@ class _$_LoadedShopsState extends _LoadedShopsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Shop> shopList) loaded,
+    required TResult Function(List<Shop> shopList, List<Product> productList)
+        loaded,
     required TResult Function() failed,
   }) {
-    return loaded(shopList);
+    return loaded(shopList, productList);
   }
 
   @override
@@ -999,10 +1024,10 @@ class _$_LoadedShopsState extends _LoadedShopsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Shop> shopList)? loaded,
+    TResult? Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult? Function()? failed,
   }) {
-    return loaded?.call(shopList);
+    return loaded?.call(shopList, productList);
   }
 
   @override
@@ -1010,12 +1035,12 @@ class _$_LoadedShopsState extends _LoadedShopsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Shop> shopList)? loaded,
+    TResult Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(shopList);
+      return loaded(shopList, productList);
     }
     return orElse();
   }
@@ -1059,11 +1084,13 @@ class _$_LoadedShopsState extends _LoadedShopsState {
 }
 
 abstract class _LoadedShopsState extends ShopsState {
-  const factory _LoadedShopsState({final List<Shop> shopList}) =
-      _$_LoadedShopsState;
+  const factory _LoadedShopsState(
+      {final List<Shop> shopList,
+      final List<Product> productList}) = _$_LoadedShopsState;
   const _LoadedShopsState._() : super._();
 
   List<Shop> get shopList;
+  List<Product> get productList;
   @JsonKey(ignore: true)
   _$$_LoadedShopsStateCopyWith<_$_LoadedShopsState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1109,7 +1136,8 @@ class _$_FailedShopstState extends _FailedShopstState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Shop> shopList) loaded,
+    required TResult Function(List<Shop> shopList, List<Product> productList)
+        loaded,
     required TResult Function() failed,
   }) {
     return failed();
@@ -1120,7 +1148,7 @@ class _$_FailedShopstState extends _FailedShopstState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Shop> shopList)? loaded,
+    TResult? Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult? Function()? failed,
   }) {
     return failed?.call();
@@ -1131,7 +1159,7 @@ class _$_FailedShopstState extends _FailedShopstState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Shop> shopList)? loaded,
+    TResult Function(List<Shop> shopList, List<Product> productList)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
