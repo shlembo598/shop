@@ -70,9 +70,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     Emitter<FilterState> emit,
   ) async {
     if (productsBox.isNotEmpty) {
-      print('>>>>>>>>>>>>>>>>>>> ${event.productName}');
       final isFiltered = event.productName != '';
-      print('>>>>>>>>>>>>>>>>>>> $isFiltered');
       final products = productsBox.values.toList();
       final filteredProducts = products
           .where(
@@ -93,34 +91,53 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     _FilterByCharacteristicNameFilterEvent event,
     Emitter<FilterState> emit,
   ) async {
-    if (productsBox.isNotEmpty) {
-      final isFiltered = event.characteristicName != '';
-      final products = productsBox.values.toList();
+    final isFiltered = event.characteristicName != '';
+    final characteristics = characteristicsBox.values.toList();
+
+    final filteredCharacteristics = characteristics
+        .where(
+          (e) => e.name.toLowerCase().contains(
+                event.characteristicName.toLowerCase(),
+              ),
+        )
+        .toList();
+
+    if (state.productList.isNotEmpty) {
+      final products = state.productList;
+
       final filteredProducts = products
           .where(
-            (element) => element.name.toLowerCase().contains(
-                  event.characteristicName.toLowerCase(),
-                ),
+            (product) => filteredCharacteristics.any(
+              (element) => product.id.contains(element.productId),
+            ),
           )
           .toList();
 
-      if (event.characteristicName != '') {
-        final characteristics = characteristicsBox.values.toList();
-        final filteredCharacteristics = characteristics
+      emit(
+        state.copyWith(
+          productList: filteredProducts,
+          isFiltered: isFiltered,
+        ),
+      );
+    } else {
+      if (productsBox.isNotEmpty) {
+        final products = productsBox.values.toList();
+
+        final filteredProducts = products
             .where(
-              (e) => e.name.toLowerCase().contains(
-                    event.characteristicName.toLowerCase(),
-                  ),
+              (product) => filteredCharacteristics.any(
+                (element) => product.id.contains(element.productId),
+              ),
             )
             .toList();
 
-        print('>>>>>>>>>>>>>>>>>>> $filteredCharacteristics');
+        emit(
+          state.copyWith(
+            productList: filteredProducts,
+            isFiltered: isFiltered,
+          ),
+        );
       }
-
-      emit(state.copyWith(
-        productList: filteredProducts,
-        isFiltered: isFiltered,
-      ));
     }
   }
 }

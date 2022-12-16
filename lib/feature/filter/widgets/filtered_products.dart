@@ -83,6 +83,7 @@ class _ProductTile extends StatelessWidget {
         children: [
           ProductCharacteristics(
             productId: product.id,
+            isFiltered: true,
           ),
         ],
       ),

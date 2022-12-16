@@ -7,10 +7,12 @@ import 'create_characteristic_dialog.dart';
 class ProductCharacteristics extends StatelessWidget {
   const ProductCharacteristics({
     Key? key,
+    this.isFiltered = false,
     required this.productId,
   }) : super(key: key);
 
   final String productId;
+  final bool isFiltered;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class ProductCharacteristics extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             )),
                       ),
-                      IconButton(
+                      if(!isFiltered)IconButton(
                           onPressed: () {
                             characteristicsBloc.add(CharacteristicsEvent.delete(
                               characteristicId: characteristic.id,
@@ -60,7 +62,7 @@ class ProductCharacteristics extends StatelessWidget {
                 },
                 itemCount: characteristics.length,
               ),
-              Row(
+              if(!isFiltered)Row(
                 children: [
                   const Spacer(),
                   Padding(

@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/feature/app/entities/product.dart';
 import 'package:shop_app/feature/app/entities/shop.dart';
-import 'package:shop_app/feature/characteristics/bloc/characteristics_bloc.dart';
 import 'package:shop_app/feature/products/bloc/products_bloc.dart';
 import 'package:shop_app/feature/products/widgets/Products.dart';
 import 'package:shop_app/feature/products/widgets/add_product_button.dart';
-import 'package:shop_app/feature/products/widgets/product_tile.dart';
 
 class ProductsList extends StatelessWidget {
   const ProductsList({
